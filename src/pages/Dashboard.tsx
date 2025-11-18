@@ -12,6 +12,11 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { items, tabs } from "../dummy/constants.dummy";
 import Tab from "../components/Tab";
+import TabActionCard from "../components/TabActionCard";
+import { RiFileList3Line } from "react-icons/ri";
+import { GiReceiveMoney } from "react-icons/gi";
+import { BsPeople } from "react-icons/bs";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = React.useState<string>(tabs[0]);
@@ -62,17 +67,50 @@ const Dashboard = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="max-w-[500px] mx-auto overflow-x-auto mt-4 px-4 scroll-bar">
-        <ul className="flex gap-2 min-w-[400px] tabs">
-          {tabs.map((tab) => (
-            <Tab
-              key={tab}
-              label={tab}
-              handleClick={() => handleTabChange(tab)}
-              isActive={activeTab === tab}
-            />
-          ))}
-        </ul>
+      <div className="max-w-[500px] mx-auto mt-4">
+        <div className="scroll-bar overflow-x-auto px-6">
+          <ul className="flex gap-2 min-w-[400px] tabs">
+            {tabs.map((tab) => (
+              <Tab
+                key={tab}
+                label={tab}
+                handleClick={() => handleTabChange(tab)}
+                isActive={activeTab === tab}
+              />
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="bg-gray-100/90">
+        <div className="max-w-[500px] mx-auto mt-2 grid grid-cols-2 gap-4  p-6">
+          <TabActionCard
+            icon={<RiFileList3Line size={32} className="text-[#0A4C66]" />}
+            label="Pay Medical Bill"
+          />
+          <TabActionCard
+            icon={<GiReceiveMoney size={32} className="text-[#0A4C66]" />}
+            label="Get Loan"
+          />
+          <TabActionCard
+            icon={<BsPeople size={32} className="text-[#0A4C66]" />}
+            label="Join MaMas"
+          />
+          <TabActionCard
+            icon={
+              <IoCheckmarkCircleOutline size={32} className="text-[#0A4C66]" />
+            }
+            label="My Approvals"
+          />
+        </div>
+        <div className="pt-12 pb-10 w-full flex justify-center">
+          <p className="text-sm text-gray-600 font-semibold text-center">
+            clinicPesa{" "}
+            <a href="#clinicPesaT&C" className="text-[#0A4C66]">
+              T&Cs
+            </a>{" "}
+            apply
+          </p>
+        </div>
       </div>
     </div>
   );

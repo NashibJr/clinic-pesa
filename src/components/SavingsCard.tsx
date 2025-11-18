@@ -16,7 +16,7 @@ const SavingsCard: React.FC<SavingsCardProps> = ({
   name,
 }) => {
   return (
-    <div className="card rounded-xl bg-white w-[90%] mx-auto max-w-[300px] sm:max-w-[400px] md:max-w-[500px]">
+    <div className="card rounded-xl bg-white w-[90%] mx-auto max-w-[320px] sm:max-w-[400px] md:max-w-[500px]">
       <div className="savings-card">
         <div className={`${color} rounded-br-md rounded-tl-xl p-1 h-fit`}>
           <p className="text-[#0A4C66] text-center text-xs font-bold">

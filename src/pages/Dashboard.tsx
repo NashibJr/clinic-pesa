@@ -3,13 +3,11 @@ import { IoClose } from "react-icons/io5";
 import { GrFormPrevious } from "react-icons/gr";
 import SavingsCard from "../components/SavingsCard";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, EffectFade } from "swiper/modules";
-// @ts-expect-error ignore missing types
+import { Pagination, Autoplay } from "swiper/modules";
+// @ts-expect-error this is an irrelevant error
 import "swiper/css";
-// @ts-expect-error ignore missing types
+// @ts-expect-error this is an irrelevant error
 import "swiper/css/pagination";
-// @ts-expect-error ignore missing types
-import "swiper/css/effect-fade";
 import { items, tabs } from "../dummy/constants.dummy";
 import Tab from "../components/Tab";
 import TabActionCard from "../components/TabActionCard";
@@ -17,6 +15,8 @@ import { RiFileList3Line } from "react-icons/ri";
 import { GiReceiveMoney } from "react-icons/gi";
 import { BsPeople } from "react-icons/bs";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import NoData from "../components/NoData";
+import ShouldRender from "../components/ShouldRender";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = React.useState<string>(tabs[0]);
@@ -41,14 +41,13 @@ const Dashboard = () => {
         </p>
       </div>
       <Swiper
-        modules={[EffectFade, Pagination, Autoplay]}
+        modules={[Pagination, Autoplay]}
         spaceBetween={20}
         slidesPerView={1}
         speed={800}
         pagination={{
           clickable: true,
         }}
-        fadeEffect={{ crossFade: true }}
         loop={true}
         className="custom-swiper -mt-16"
         autoplay={{
@@ -82,26 +81,37 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="bg-gray-100/90">
-        <div className="max-w-[500px] mx-auto mt-2 grid grid-cols-2 gap-4  p-6">
-          <TabActionCard
-            icon={<RiFileList3Line size={32} className="text-[#0A4C66]" />}
-            label="Pay Medical Bill"
-          />
-          <TabActionCard
-            icon={<GiReceiveMoney size={32} className="text-[#0A4C66]" />}
-            label="Get Loan"
-          />
-          <TabActionCard
-            icon={<BsPeople size={32} className="text-[#0A4C66]" />}
-            label="Join MaMas"
-          />
-          <TabActionCard
-            icon={
-              <IoCheckmarkCircleOutline size={32} className="text-[#0A4C66]" />
-            }
-            label="My Approvals"
-          />
-        </div>
+        <ShouldRender isVisible={activeTab === tabs[0]}>
+          <div className="max-w-[500px] mx-auto mt-2 grid grid-cols-2 gap-4  p-6">
+            <TabActionCard
+              icon={<RiFileList3Line size={32} className="text-[#0A4C66]" />}
+              label="Pay Medical Bill"
+            />
+            <TabActionCard
+              icon={<GiReceiveMoney size={32} className="text-[#0A4C66]" />}
+              label="Get Loan"
+            />
+            <TabActionCard
+              icon={<BsPeople size={32} className="text-[#0A4C66]" />}
+              label="Join MaMas"
+            />
+            <TabActionCard
+              icon={
+                <IoCheckmarkCircleOutline
+                  size={32}
+                  className="text-[#0A4C66]"
+                />
+              }
+              label="My Approvals"
+            />
+          </div>
+        </ShouldRender>
+        <ShouldRender isVisible={activeTab === tabs[1]}>
+          <NoData tabTitle={activeTab} />
+        </ShouldRender>
+        <ShouldRender isVisible={activeTab === tabs[2]}>
+          <NoData tabTitle={activeTab} />
+        </ShouldRender>
         <div className="pt-12 pb-10 w-full flex justify-center">
           <p className="text-sm text-gray-600 font-semibold text-center">
             clinicPesa{" "}

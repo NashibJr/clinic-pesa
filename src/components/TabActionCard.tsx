@@ -9,7 +9,7 @@ const TabActionCard: React.FC<TabActionCardProps> = ({ label, icon }) => {
   return (
     <div className="card p-4 rounded-xl bg-white flex flex-col items-center justify-center text-center">
       {icon}
-      <p className="text-[#0A4C66] text-sm sm:text-base">{label}</p>
+      <p className="text-gray-500 text-sm sm:text-base">{label}</p>
     </div>
   );
 };
